@@ -1,3 +1,5 @@
+// sumZero accepts a sorted array of integers. The function shoul dinf the first pair where the sum is 0. Return an array that includes both values that sum to zero or undefined if a pair does not exist.
+
 // original, naive solution O(n^2)
 function sumZero(arr){
   for(let i = 0; i < arr.length; i++){
