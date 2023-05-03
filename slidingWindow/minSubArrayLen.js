@@ -18,6 +18,7 @@ function minSubArrayLen(nums, target) {
       start++;
     }
   }
+  return minLength === Infinity ? 0 : minLength;
 }
 
 // Colt Steele:
