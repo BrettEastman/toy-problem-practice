@@ -23,6 +23,18 @@
 // their recursive solution (expensive though):
 var fibRecurs = (n) => n < 2 ? n : fibRecurs(n - 1) + fibRecurs(n - 2);
 
+// my recursive solution:
+function fib(num){
+  // add whatever parameters you deem necessary - good luck!
+  if (num === 1) {
+      return 1;
+  }
+  if (num === 2) {
+      return 1;
+  }
+  return fib(num - 1) + fib(num - 2);
+}
+
 // their solution, similar to mine, but with function memoization:
 var fibMem = function(n) {
   if (fibMem.mem[n]) return fibMem.mem[n];
