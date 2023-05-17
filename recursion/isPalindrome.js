@@ -1,15 +1,4 @@
-// Julie's version:
-function isPalindrome(s){
-  if (s === '') {
-    return true;
-  }
-
-  if (s[0] !== s[s.length - 1]) {
-    return false;
-  }
-
-  return isPalindrome(s.slice(1, s.length - 1));
-}
+// Write a recursive function called isPalindrome which returns true if the string passed to it is a palindrome (reads the same forward and backward). Otherwise it returns false.
 
 // my version May 2023:
 function isPalindrome(string){
@@ -24,6 +13,19 @@ function isPalindrome(string){
   } else {
       return isPalindrome(string.slice(first + 1, last))
   }
+}
+
+// Julie's version:
+function isPalindrome(s){
+  if (s === '') {
+    return true;
+  }
+
+  if (s[0] !== s[s.length - 1]) {
+    return false;
+  }
+
+  return isPalindrome(s.slice(1, s.length - 1));
 }
 
 // Colt Steele version:

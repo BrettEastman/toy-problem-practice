@@ -1,11 +1,4 @@
-// Julie's version:
-function reverse(s){
-  if (!s.length) {
-    return '';
-  }
-  const last = s.length - 1;
-  return s[last] + reverse(s.slice(0, last));
-}
+// Write a recursive function called reverse which accepts a string and returns a new string in reverse.
 
 // my version:
 function reverse(string){
@@ -17,6 +10,15 @@ function reverse(string){
       reversed += reverse(string.slice(0, lastInd))
   }
   return reversed;
+}
+
+// Julie's version:
+function reverse(s){
+  if (!s.length) {
+    return '';
+  }
+  const last = s.length - 1;
+  return s[last] + reverse(s.slice(0, last));
 }
 
 // Colt Steele version:

@@ -1,12 +1,4 @@
-// Julie's version:
-function flatten(arr){
-  if (arr.length === 0) return [];
-  const first = arr[0];
-  if (Array.isArray(first)) {
-    return flatten(first).concat(flatten(arr.slice(1)));
-  }
-  return [first].concat(flatten(arr.slice(1)));
-}
+// Write a recursive function called flatten which accepts an array of arrays and returns a new array with all values flattened.
 
 // my version May 2023:
 function flatten(arrOfArrs){
@@ -23,6 +15,16 @@ function flatten(arrOfArrs){
       }
   }
   return currentArr;
+}
+
+// Julie's version:
+function flatten(arr){
+  if (arr.length === 0) return [];
+  const first = arr[0];
+  if (Array.isArray(first)) {
+    return flatten(first).concat(flatten(arr.slice(1)));
+  }
+  return [first].concat(flatten(arr.slice(1)));
 }
 
 // Colt Steele version:
