@@ -2,13 +2,12 @@
 
 // my version 5-26-23
 function nestedEvenSum (obj) {
-  // add whatever parameters you deem necessary - good luck!
-  if (!obj.length) {
+  if (!Object.keys(obj).length) {
     return 0;
   }
   let sum = 0;
   for (prop in obj) {
-      let val = obj(prop);
+      let val = obj[prop];
       if (typeof val === 'number' && val % 2 === 0) {
           sum += val;
       }
@@ -19,20 +18,20 @@ function nestedEvenSum (obj) {
   return sum;
 }
 
-// // Julies solution:
-// function nestedEvenSum (obj) {
-//   let sum = 0;
-//   for (const key in obj) {
-//     const curr = obj[key];
-//     if (typeof curr === 'object') {
-//       sum += nestedEvenSum(curr)
-//     }
-//     if (curr % 2 === 0) {
-//       sum += curr;
-//     }
-//   }
-//   return sum;
-// }
+// Julies solution:
+function nestedEvenSum (obj) {
+  let sum = 0;
+  for (const key in obj) {
+    const curr = obj[key];
+    if (typeof curr === 'object') {
+      sum += nestedEvenSum(curr)
+    }
+    if (curr % 2 === 0) {
+      sum += curr;
+    }
+  }
+  return sum;
+}
 
 
 var obj1 = {
