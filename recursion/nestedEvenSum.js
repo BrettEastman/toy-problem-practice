@@ -1,19 +1,38 @@
 // Write a recursive function called nestedEvenSum. Return the sum of all even numbers in an object which may contain nested objects.
 
-// Julie's solution:
+// my version 5-26-23
 function nestedEvenSum (obj) {
+  // add whatever parameters you deem necessary - good luck!
+  if (!obj.length) {
+    return 0;
+  }
   let sum = 0;
-  for (const key in obj) {
-    const curr = obj[key];
-    if (typeof curr === 'object') {
-      sum += nestedEvenSum(curr)
-    }
-    if (curr % 2 === 0) {
-      sum += curr;
-    }
+  for (prop in obj) {
+      let val = obj(prop);
+      if (typeof val === 'number' && val % 2 === 0) {
+          sum += val;
+      }
+      if (typeof val === 'object') {
+          sum += nestedEvenSum(val)
+      }
   }
   return sum;
 }
+
+// // Julies solution:
+// function nestedEvenSum (obj) {
+//   let sum = 0;
+//   for (const key in obj) {
+//     const curr = obj[key];
+//     if (typeof curr === 'object') {
+//       sum += nestedEvenSum(curr)
+//     }
+//     if (curr % 2 === 0) {
+//       sum += curr;
+//     }
+//   }
+//   return sum;
+// }
 
 
 var obj1 = {
@@ -36,5 +55,5 @@ var obj2 = {
   e: {e: {e: 2}, ee: 'car'}
 };
 
-nestedEvenSum(obj1); // 6
-nestedEvenSum(obj2); // 10
+console.log(nestedEvenSum(obj1)); // 6
+console.log(nestedEvenSum(obj2)); // 10
