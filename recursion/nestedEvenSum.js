@@ -33,6 +33,18 @@ function nestedEvenSum (obj) {
   return sum;
 }
 
+// Colt Steele solution:
+function nestedEvenSum (obj, sum=0) {
+  for (var key in obj) {
+      if (typeof obj[key] === 'object'){
+          sum += nestedEvenSum(obj[key]);
+      } else if (typeof obj[key] === 'number' && obj[key] % 2 === 0){
+          sum += obj[key];
+      }
+  }
+  return sum;
+}
+
 
 var obj1 = {
   outer: 2,
