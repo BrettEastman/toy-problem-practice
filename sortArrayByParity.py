@@ -22,5 +22,5 @@ class Solution(object):
 
 # another solution:
 class Solution:
-    def sortArrayByParity(self, A: List[int]) -> List[int]:
+    def sortArrayByParity(self, A):
         return [i for i in A if not i % 2] + [i for i in A if i % 2]

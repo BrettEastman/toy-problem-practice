@@ -11,4 +11,4 @@ class Solution(object):
             result.append(txt[i][::-1])
         return ' '.join(result)
 
-print(Solution.reverseWords(Self, "Let's take LeetCode contest"))
+print(Solution.reverseWords(Self, "Let's take LeetCode contest")) # s'teL ekat edoCteeL tsetnoc
