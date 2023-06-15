@@ -1,4 +1,3 @@
-// just the merge helper function
 function merge(arr1, arr2) {
   const result = [];
   let i = 0;
@@ -23,7 +22,16 @@ function merge(arr1, arr2) {
   return result;
 }
 
-let array1 = [2, 13, 37];
-let array2 = [4, 15, 40];
+function mergeSort(arr) {
+  if(arr.length <= 1) {
+    return arr;
+  }
+  let mid = Math.floor(arr.length / 2);
+  let left = mergeSort(arr.slice(0, mid));
+  let right = mergeSort(arr.slice(mid));
+  return merge(left, right);
+}
 
-console.log(merge(array1, array2))
+let array1 = [4, 15, 40, 2, 13, 37];
+
+console.log(mergeSort(array1));
