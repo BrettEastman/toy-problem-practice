@@ -1,3 +1,8 @@
+// Insertion sort, pseudo code
+// Start by picking the second element in the array
+// Now compare the second element with the one before it and swap if necessary
+// Continue to the next element, and if it is in the incorrect order, iterate through the sorted portion (i.e. the left side) to place the element in the correct place
+// Repeat, until the array sorted
 
 // Colt Steele version:
 // note that we have to use var rather than let or const so we can access j outside of the for loop, but also reassign it when needed
