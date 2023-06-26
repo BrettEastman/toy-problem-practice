@@ -8,7 +8,7 @@
 function bubbleSort(arr) {
   for (let i = arr.length - 1; i >=0; i--) {
     for (let j = 0; j <= i; j++) {
-      if (arr[j] - arr[j + 1] > 0) {
+      if (arr[j] > arr[j + 1]) {
         [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]
       }
     }
@@ -19,3 +19,4 @@ function bubbleSort(arr) {
 const arr1 = [5,7,30,3,0,24,6,9,4];
 
 console.log(bubbleSort(arr1));
+// [ 0, 3, 4, 5, 6, 7, 9, 24, 30 ]
