@@ -1,3 +1,25 @@
+// HACK REACTOR SOLUTION(nicer in my opinion):
+function quicksort(array) {
+  if (array.length <= 1) {
+    return array;
+  }
+  let pivot = array[Math.floor(array.length / 2)];
+  let left = [];
+  let right = [];
+  for (let i = 0; i < array.length; i++) {
+    if (i === Math.floor(array.length / 2)) {
+      continue;
+    }
+    if (pivot > array[i]) {
+      left.push(array[i]);
+    } else {
+      right.push(array[i]);
+    }
+  }
+  return quicksort(left).concat(pivot, quicksort(right));
+}
+
+// COLT STEELE SOLUTION:
 // helper function for quickSort:
 function pivot(arr, start = 0, end = arr.length - 1) {
   let pivot = arr[start];
