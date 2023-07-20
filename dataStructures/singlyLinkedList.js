@@ -13,7 +13,7 @@ class SinglyLinkedList {
   }
 
   push(value) {
-    let newNode = new Node(val);
+    let newNode = new Node(value);
     if (!this.head) {
       this.head = newNode;
       this.tail = this.head
@@ -25,4 +25,30 @@ class SinglyLinkedList {
     return this;
   }
 
+
+  pop() {
+    if (!this.head) return undefined;
+    let current = this.head;
+    let newTail = current;
+    while (current.next) { // while there is a next node
+      newTail = current; // set newTail to current
+      current = current.next;
+    }
+    this.tail = newTail; // set tail to newTail
+    this.tail.next = null;
+    this.length--;
+    if (this.length === 0) { // if there is only one node
+      this.head = null;
+      this.tail = null;
+    }
+    return current;
+  }
 }
+
+let list = new SinglyLinkedList();
+
+list.push("Hello");
+list.push("Goodbye");
+list.push("!");
+list.pop();
+console.log(list);
