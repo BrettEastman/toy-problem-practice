@@ -43,12 +43,26 @@ class SinglyLinkedList {
     }
     return current;
   }
+
+  shift() {
+    if (!this.head) return undefined;
+    let originalHead = this.head;
+    this.head = originalHead.next;
+    this.length--;
+    if (this.length === 0) {
+      this.tail = null;
+    }
+    return originalHead;
 }
 
 let list = new SinglyLinkedList();
 
-list.push("Hello");
-list.push("Goodbye");
-list.push("!");
+list.push("1");
+list.push("2");
+list.push("3");
+list.push("4");
+list.push("5");
+list.push("6");
+console.log('list before pop: ', list);
 list.pop();
-console.log(list);
+console.log('list after pop: ', list);
