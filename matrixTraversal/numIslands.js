@@ -7,15 +7,20 @@ var numIslands = function(grid) {
   let islands = 0;
   let mRows = grid.length;
   let nColumns = grid[0].length;
+  // this corresponds to the four directions we can move in a grid: left, down, right, up
   let direction = [[0, -1], [1, 0], [0, 1], [-1, 0]];
 
   const dfs = function(i, j) {
+      // if we have reached the point where we are conducting a depth first search, mark the current point as visited with a 2
       grid[i][j] = 2;
+      // these will be the new coordinates we will be checking, either left, down, right, or up depending on where we are in the for of loop
       let r, c;
       for (let dir of direction) {
           r = i + dir[0];
           c = j + dir[1];
           if (r >= 0 && r < mRows && c >= 0 && c < nColumns && grid[r][c] == 1) {
+              // continue to spread out and mark every point that is connected to the current point as visited
+              // once all of the call stacks have been resolved, we will have reached the end of the island
               dfs(r, c);
           }
       }
@@ -26,6 +31,7 @@ var numIslands = function(grid) {
       for (let j = 0; j < nColumns; j++) {
           if (grid[i][j] == 1) {
               dfs(i, j);
+              // once the final dfs call stack has been resolved, we will have reached the end of a complete island and can increment the total number of islands
               islands++;
           }
       }
