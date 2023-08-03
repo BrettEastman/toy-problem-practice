@@ -78,6 +78,40 @@ class SinglyLinkedList {
     }
     return currentNode;
   }
+
+  set(index, value) {
+    let foundNode = this.get(index);
+    if (foundNode) {
+      foundNode.value = value;
+      return true;
+    }
+    return false;
+  }
+
+  insert(index, value) {
+    // If the index is less than zero or greater than the length, return falls
+    if (index < 0 || index > this.length) return false;
+    // If the index is the same as the length, push a new note to the end of the list
+    if (index === this.length) {
+      this.push(value);
+      return true;
+    }
+    // if the index is zero, on shift a new note to the start of the list
+    if (index === 0) {
+      this.unshift(value);
+      return true;
+    }
+    let newNode = new Node(value);
+    // Otherwise, using the get method, access the node at the index -1
+    let prevNode = this.get(index - 1);
+    let temp = prevNode.next;
+    // Set the next property on that node to be the new node.
+    prevNode.next = newNode;
+    // Set the next property on the new node to be the previous next
+    newNode.next = temp;
+    this.length++;
+    return true;
+  }
 }
 
 let list = new SinglyLinkedList();
@@ -92,4 +126,8 @@ list.push("6");
 // list.unshift('first');
 // list.push('last');
 // console.log('list after unshift and push: ', list);
-console.log('list get 5: ', list.get(5));
+// console.log('list get 5: ', list.get(5));
+// list.insert(0, 'first');
+list.insert(5, 'middle');
+console.log('list: ', list);
+console.log('list.head: ', list.head);
