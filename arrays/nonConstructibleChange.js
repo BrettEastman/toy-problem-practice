@@ -13,8 +13,11 @@ function nonConstructibleChange(array) {
     }
     currentChange += sorted[i];
   }
+  return currentChange + 1;
 }
 
 let coins = [5, 7, 1, 1, 2, 3, 22];
 
 console.log(nonConstructibleChange(coins));
+
+// The way it works is that the next number in the sorted array cannot be greater than the sum of all the previous numbers + 1. If that is the case, then the answer is the sum of all the previous + 1
