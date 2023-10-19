@@ -76,12 +76,59 @@ class DoublyLinkedList {
     // return old head
     return oldHead;
   }
+
+  unshift(value) {
+    let newNode = new Node(value);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      let oldHead = this.head;
+      oldHead.prev = newNode;
+      newNode.next = oldHead;
+      this.head = newNode;
+    }
+    this.length++;
+    return this;
+  }
+
+  // my solution
+  get(index) {
+    if (index >= this.length || index < 0) return null;
+    let mid = Math.floor(this.length / 2);
+    let current, counter;
+    if (index <= mid) {
+      counter = 0;
+      current = this.head;
+      while (counter !== index) {
+        current = current.next;
+        counter++;
+      }
+    } else {
+      counter = this.length - 1;
+      current = this.tail;
+      while (counter !== index) {
+        current = current.prev;
+        counter--;
+      }
+    }
+    return current;
+  }
 }
 
 let list = new DoublyLinkedList();
 list.push(1);
 list.push(2);
 list.push(3);
-console.log("list", list);
-let shifted = list.shift();
-console.log("list after shift", list, "shifted node:", shifted);
+list.push(4);
+list.push(5);
+list.push(6);
+list.push(7);
+list.push(8);
+// console.log("list", list);
+// let shifted = list.shift();
+// console.log("list after shift", list, "shifted node:", shifted);
+// list.unshift("blah blah");
+// console.log("after unshifted: ", list);
+let currentGet = list.get(7);
+console.log("currentGet: ", currentGet);

@@ -8,6 +8,7 @@
 function insertionSort(array) {
   for (let i = 1; i < array.length; i++) {
     let j = i;
+    // this is where we are going to be comparing the current value to the previous value and swapping if necessary. The worst case scenario is that we have to swap the current value all the way to the beginning of the array. "Insertion" in this case is the series of swaps to correctly place the current value.
     while (j > 0 && array[j] < array[j - 1]) {
       [array[j - 1], array[j]] = [array[j], array[j - 1]];
       j--;
