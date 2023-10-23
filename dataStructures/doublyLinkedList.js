@@ -114,6 +114,55 @@ class DoublyLinkedList {
     }
     return current;
   }
+
+  set(index, value) {
+    let nodeSet = this.get(index);
+    if (nodeSet !== null) {
+      nodeSet.value = value;
+      return true;
+    }
+    return false;
+  }
+
+  insert(index, value) {
+    if (index > this.length || index < 0) {
+      return false;
+    }
+    if (index === 0) {
+      // I originally had this as this.unshift(value) followed by return true, but this is how Colte Steele did it, which does the same thing in one line with the "!!" to force it to return a boolean(true)
+      return !!this.unshift(value);
+    }
+    if (index === this.length) {
+      return !!this.push(value);
+    }
+    let newNode = new Node(value);
+    let prevNode = this.get(index - 1);
+    let nextNode = prevNode.next;
+    // I originally had these written out as four separate lines, but he grouped them together like this which makes sense and is very clear. It's not necessary at all, but nice.
+    (prevNode.next = newNode), (newNode.prev = prevNode);
+    (newNode.next = nextNode), (nextNode.prev = newNode);
+    this.length++;
+    return true;
+  }
+
+  remove(index) {
+    if (index >= this.length || index < 0) {
+      return undefined;
+    }
+    if (index === 0) {
+      return this.shift();
+    }
+    if (index === this.length - 1) {
+      return this.pop();
+    }
+    let prev = this.get(index - 1);
+    let toRemove = this.get(index);
+    let next = this.get(index + 1);
+    (prev.next = next), (next.prev = prev);
+    (toRemove.prev = null), (toRemove.next = null);
+    this.length--;
+    return toRemove;
+  }
 }
 
 let list = new DoublyLinkedList();
@@ -125,10 +174,13 @@ list.push(5);
 list.push(6);
 list.push(7);
 list.push(8);
-// console.log("list", list);
 // let shifted = list.shift();
 // console.log("list after shift", list, "shifted node:", shifted);
 // list.unshift("blah blah");
 // console.log("after unshifted: ", list);
-let currentGet = list.get(7);
-console.log("currentGet: ", currentGet);
+// let currentGet = list.get(7);
+// console.log("currentGet: ", currentGet);
+list.insert(1, "INSERT");
+list.remove(0);
+list.remove(2);
+console.log("list", list);
