@@ -5,6 +5,7 @@ class Node {
   }
 }
 
+// A stack is an abstract concept that can be created in many different ways, but the most important thing is to make sure insertion and removal are constant time: O(1)
 class Stack {
   constructor() {
     this.first = null;
