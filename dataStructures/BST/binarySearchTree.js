@@ -64,6 +64,7 @@ class BinarySearchTree {
   //   return this;
   // }
 
+  // in this version, we are looking to see if it's there and if so, we return that node. A simpler version of this could be called "contains" and would just return a boolean, true if there, false if not.
   find(value) {
     if (!this.root) {
       return false;
