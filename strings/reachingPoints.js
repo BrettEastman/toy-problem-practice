@@ -11,6 +11,8 @@
 // (1, 2) -> (3, 2)
 // (3, 2) -> (3, 5)
 
+// youtube explanation: https://youtu.be/tPr5Uae6Drc?si=SRDzceCfx-iIfl_4
+
 var reachingPoints = function (sx, sy, tx, ty) {
   // start with tx, ty and see if we can go backwards to sx, sy
   // Example: Input: sx = 1, sy = 1, tx = 3, ty = 5
