@@ -38,31 +38,6 @@ class BinarySearchTree {
       }
     }
   }
-  // my recursive solution (untested)
-  // insert(value) {
-  //   let newNode = new Node(value);
-  //   if (!this.root) {
-  //     this.root = newNode;
-  //     return this;
-  //   }
-  //   function recursive(node, bstNode) {
-  //     if (node < bstNode) {
-  //       if (!bstNode.left) {
-  //         bstNode.left = node;
-  //       } else {
-  //         recursive(node, bstNode.left);
-  //       }
-  //     } else {
-  //       if (!bstNode.right) {
-  //         bstNode.right = node;
-  //       } else {
-  //         recursive(node, bstNode.right);
-  //       }
-  //     }
-  //   }
-  //   recursive(newNode, this.root);
-  //   return this;
-  // }
 
   // in this version, we are looking to see if it's there and if so, we return that node. A simpler version of this could be called "contains" and would just return a boolean, true if there, false if not.
   find(value) {
