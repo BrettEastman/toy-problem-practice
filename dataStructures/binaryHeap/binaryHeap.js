@@ -1,3 +1,7 @@
+// Binary Heaps are very useful data structures for sorting, and implementing other data structures like priority queues
+// Binary Heaps are either MaxBinaryHeaps or MinBinaryHeaps with parents either bieing smaller or larger than their children
+// With just a little bit of math, we can represent heaps using arrays
+
 // in a max binary heap, parent nodes are always larger than child nodes, which means the largest value is always the root node
 // in a min binary heap, parent nodes are always smaller than child nodes, which means the smallest value is always the root node
 
