@@ -1,16 +1,17 @@
+// Binary Heaps are either MaxBinaryHeaps or MinBinaryHeaps with parents either being smaller or larger than their children
 // Binary Heaps are very useful data structures for sorting, and implementing other data structures like priority queues
-// Binary Heaps are either MaxBinaryHeaps or MinBinaryHeaps with parents either bieing smaller or larger than their children
-// With just a little bit of math, we can represent heaps using arrays
+// Although conceptually, heaps are trees, with just a little bit of math, we represent them using arrays
 
 // in a max binary heap, parent nodes are always larger than child nodes, which means the largest value is always the root node
 // in a min binary heap, parent nodes are always smaller than child nodes, which means the smallest value is always the root node
 
 class BinaryHeap {
   constructor() {
-    // I put in sample values for testing
-    this.values = [41, 33, 27, 18, 13];
+    this.values = [];
+    // sample values for testing
+    // this.values = [41, 33, 27, 18, 13];
   }
-  // my version which uses recursion
+  // my version which uses recursion. To insert a value, you push it to the end of the array, then use the bubbleUp method to place it in its correct spot.
   insert(value) {
     this.values.push(value);
     let valIndex = this.values.length - 1;
@@ -33,6 +34,7 @@ class BinaryHeap {
   }
 
   // my version - works well and is more versatile because it can be called on any index
+  // we start by swapping the first and last items in the array, then sift down the first one until it gets to its correct spot
   removeMax(index = 0) {
     let lastIndex = this.values.length - 1;
     [this.values[index], this.values[lastIndex]] = [

@@ -1,3 +1,6 @@
+// A singly linked list is a type of linked list that is unidirectional, that is, it can be traversed in only one direction from head to the last node (tail). It is a linear data structure in which the elements are not stored in contiguous memory locations. Unlike arrays, which are indexed and allow for random access, linked lists are referenced by following a pointer from one element to the next. This makes them more flexible than arrays, as new elements can be added or removed without having to re-allocate memory.
+// Each element in a linked list is called a node. A node consists of two parts: a data field and a pointer. The data field stores the actual data, while the pointer points to the next node in the list. The last node in the list will have a pointer that points to null, indicating the end of the list.
+
 class Node {
   constructor(value) {
     this.value = value;
@@ -25,19 +28,20 @@ class SinglyLinkedList {
     return this;
   }
 
-
   pop() {
     if (!this.head) return undefined;
     let current = this.head;
     let newTail = current;
-    while (current.next) { // while there is a next node
+    while (current.next) {
+      // while there is a next node
       newTail = current; // set newTail to current
       current = current.next;
     }
     this.tail = newTail; // set tail to newTail
     this.tail.next = null;
     this.length--;
-    if (this.length === 0) { // if there is only one node
+    if (this.length === 0) {
+      // if there is only one node
       this.head = null;
       this.tail = null;
     }
@@ -71,7 +75,7 @@ class SinglyLinkedList {
   get(index) {
     if (index >= this.length || index < 0) return null;
     let counter = 0;
-    let currentNode = this.head
+    let currentNode = this.head;
     while (counter !== index) {
       currentNode = currentNode.next;
       counter++;
@@ -158,6 +162,6 @@ list.push("6");
 // console.log('list after unshift and push: ', list);
 // console.log('list get 5: ', list.get(5));
 // list.insert(0, 'first');
-list.insert(5, 'middle');
-console.log('list: ', list);
-console.log('list.head: ', list.head);
+list.insert(5, "middle");
+console.log("list: ", list);
+console.log("list.head: ", list.head);

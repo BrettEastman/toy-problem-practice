@@ -5,6 +5,7 @@ class Node {
   }
 }
 
+// A queue is a linear data structure that is open at both ends, and which follows the First In First Out (FIFO) principle, where elements are added to the rear (back) and removed from the front (head). It is often used to implement buffers and job queues.
 // enqueue will add to the end (like push), whereas dequeue will remove from the beginning (like shift)
 
 class Queue {
