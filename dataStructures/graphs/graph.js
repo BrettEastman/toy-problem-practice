@@ -67,6 +67,47 @@ class Graph {
     }
     delete this.adjacencyList;
   }
+
+  depthFirstRecursive(start) {
+    const result = [];
+    const visited = {};
+    // we need to preserve this.adjacencyList in a new variable to be used in the helper function
+    const adjList = this.adjacencyList;
+
+    function dfs(vertex) {
+      if (!vertex) return null;
+      visited[vertex] = true;
+      result.push(vertex);
+      adjList[vertex].forEach((neighbor) => {
+        if (!visited[neighbor]) {
+          return dfs(neighbor);
+        }
+      });
+    }
+
+    dfs(start);
+    return result;
+  }
+
+  depthFirstIterative(start) {
+    const result = [];
+    const visited = {};
+    const stack = [start];
+    let current;
+
+    visited[start] = true;
+    while (stack.length > 0) {
+      current = stack.pop();
+      result.push(current);
+      this.adjacencyList[current].forEach((neighbor) => {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true;
+          stack.push(neighbor);
+        }
+      });
+    }
+    return result;
+  }
 }
 
 let g = new Graph();
@@ -95,3 +136,6 @@ g.removeVertex("Dallas");
 g.removeVertex("LA");
 
 console.log("g after removeVertex", g);
+
+console.log("recursive dfs:", g.depthFirstRecursive("SF"));
+console.log("iterative dfs:", g.depthFirstIterative("SF"));
