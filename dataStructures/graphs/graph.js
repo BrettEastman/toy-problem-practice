@@ -89,6 +89,7 @@ class Graph {
     return result;
   }
 
+  // Here, we are using a stack as our data structure to keep track of who to visit next
   depthFirstIterative(start) {
     const result = [];
     const visited = {};
@@ -103,6 +104,30 @@ class Graph {
         if (!visited[neighbor]) {
           visited[neighbor] = true;
           stack.push(neighbor);
+        }
+      });
+    }
+    return result;
+  }
+
+  // begin with neighbors of "start", then the neighbors of the first neighbor, neighbors of the second neighbor, etc.
+  // Here, we are using a queue as our data structure to keep track of who to visit next
+  breadFirstSearch(start) {
+    const result = [];
+    const queue = [start];
+    const visited = {};
+    visited[start] = true;
+    const adjList = this.adjacencyList;
+    let current;
+
+    while (queue.length) {
+      current = queue.shift();
+      result.push(current);
+
+      adjList[current].forEach((neighbor) => {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true;
+          queue.push(neighbor);
         }
       });
     }
