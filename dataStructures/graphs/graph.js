@@ -112,7 +112,7 @@ class Graph {
 
   // begin with neighbors of "start", then the neighbors of the first neighbor, neighbors of the second neighbor, etc.
   // Here, we are using a queue as our data structure to keep track of who to visit next
-  breadFirstSearch(start) {
+  breadthFirstSearch(start) {
     const result = [];
     const queue = [start];
     const visited = {};
