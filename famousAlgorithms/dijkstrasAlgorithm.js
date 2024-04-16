@@ -19,7 +19,7 @@ class PriorityQueue {
   }
 }
 
-// we are going to implement Dijkstra's as a method on WeightedGraph
+// We are going to implement Dijkstra's as a method on WeightedGraph. Weight in this case is a generic term for the cost of moving from one vertex to another. Weight can be distance, time, cost, etc.
 class WeightedGraph {
   constructor() {
     this.adjacencyList = {};
@@ -29,6 +29,7 @@ class WeightedGraph {
     if (!this.adjacencyList[vertexName]) this.adjacencyList[vertexName] = [];
   }
 
+  // An edge in a graph is a connection between two vertices, like a cable that connects two audio devices. In a weighted graph, each edge has a weight.
   addEdge(v1, v2, weight) {
     this.adjacencyList[v1].push({ node: v2, weight });
     this.adjacencyList[v2].push({ node: v1, weight });
@@ -36,10 +37,11 @@ class WeightedGraph {
 
   // Dijkstra's is just a method in a graph of finding out the shortest path between two points.
   Dijkstra(start, finish) {
+    // we are using a priority queue to sort the distances from shortest to longest
     const nodes = new PriorityQueue();
     const distances = {};
     const previous = {};
-    let currentSmallestValue;
+    let currentSmallestValueName;
     let path = [];
 
     // build up initial state
@@ -59,37 +61,44 @@ class WeightedGraph {
     }
 
     while (nodes.values.length) {
-      currentSmallestValue = nodes.dequeue().value;
-      if (currentSmallestValue === finish) {
-        // Need to build up the path and return that
-        while (previous[currentSmallestValue]) {
-          path.push(currentSmallestValue);
-          currentSmallestValue = previous[currentSmallestValue];
+      currentSmallestValueName = nodes.dequeue().value;
+      if (currentSmallestValueName === finish) {
+        // Then we're done! But we need to build up the path and return it to really finish
+        while (previous[currentSmallestValueName]) {
+          path.push(currentSmallestValueName);
+          currentSmallestValueName = previous[currentSmallestValueName];
         }
         break;
       }
       if (
-        currentSmallestValue ||
-        distances[currentSmallestValue] !== Infinity
+        currentSmallestValueName ||
+        distances[currentSmallestValueName] !== Infinity
       ) {
-        for (let neighbor in this.adjacencyList[currentSmallestValue]) {
+        // probably doesn't need to be a for...in loop, could also be a regular for loop
+        for (let neighbor in this.adjacencyList[currentSmallestValueName]) {
+          // example: this.adjacencyList[currentSmallestValueName] [
+          //   { node: 'C', weight: 4 },
+          //   { node: 'D', weight: 1 },
+          //   { node: 'E', weight: 1 }
+          // ]
           // find neighboring node
-          let nextNode = this.adjacencyList[currentSmallestValue][neighbor];
+          let nextNode = this.adjacencyList[currentSmallestValueName][neighbor];
           // calculate new distance to the neighboring node
-          let candidateSum = distances[currentSmallestValue] + nextNode.weight;
+          let candidateSum =
+            distances[currentSmallestValueName] + nextNode.weight;
           // then compare that to what we currently stored for 'E'
           if (candidateSum < distances[nextNode.node]) {
             // if that is the case, then we will update the smallest distance to neighbor
             distances[nextNode.node] = candidateSum;
             // then we need to update our previous object - how we got to neighbor
-            previous[nextNode.node] = currentSmallestValue;
+            previous[nextNode.node] = currentSmallestValueName;
             // then enqueue in priority queue with new priority
             nodes.enqueue(nextNode.node, candidateSum);
           }
         }
       }
     }
-    const finalPath = path.concat(currentSmallestValue).reverse();
+    const finalPath = path.concat(currentSmallestValueName).reverse();
     console.log("finalPath", finalPath);
     return finalPath;
   }
