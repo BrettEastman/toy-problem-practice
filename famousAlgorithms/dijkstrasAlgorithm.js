@@ -123,4 +123,4 @@ graph.addEdge("E", "F", 1);
 
 graph.Dijkstra("A", "E");
 
-// console.log("graph", graph.adjacencyList);
+console.log("graph", graph.adjacencyList);

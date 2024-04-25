@@ -9,11 +9,12 @@
       "request": "launch",
       "name": "Launch Program",
       "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}/nonConstructibleChange.js"
+      "program": "${workspaceFolder}/famousAlgorithms/dijkstrasAlgoexpert.js",
+      "cwd": "${workspaceFolder}"
     },
     {
       "name": "Python: Current File",
-      "type": "python",
+      "type": "debugpy",
       "request": "launch",
       "program": "${file}",
       "console": "integratedTerminal",

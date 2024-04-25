@@ -33,6 +33,7 @@ def dijkstrasAlgorithm(start, edges):
 
     while len(visited) != numberOfVertices:
         # if we printed it in a list of two elements at the beginning of the while loop, as in [vertex, currentMinDistance], it would look like this: [0, 0], then [1, 7], then [4, 10], then [2, 13], then [3, 27], then [5, inf]
+        # we basically keep calling getVertexWithMinDistance with an updated minDistances array and updated visited set until we have visited all the vertices.
         vertex, currentMinDistance = getVertexWithMinDistance(
             minDistances, visited)
 
@@ -43,7 +44,7 @@ def dijkstrasAlgorithm(start, edges):
         visited.add(vertex)
 
         for edge in edges[vertex]:
-            # each edge printed in order of for loop: [1, 7], [2, 6], [3, 20], [4, 3], [3, 14], [4, 2]
+            # we are checking the edges of the current vertex and updating the minDistances array with the shortest path to the destination vertex. For example, if the current vertex is 0, and the edge is [1, 7], then the destination is 1 and the distance to the destination is 7. We are updating the minDistances array with the shortest path to the destination vertex.
             destination, distanceToDestination = edge
 
             # we don't really need this check, but it's good to have it in case the input is not well formed.
@@ -55,7 +56,7 @@ def dijkstrasAlgorithm(start, edges):
             if newPathDistance < currentDestinationDistance:
                 minDistances[destination] = newPathDistance
 
-    # if the value of x is equal to infinity, we want to return -1, otherwise we want to return the value of x. We are applying that function to each element in the minDistances array.
+    # if the value of x is equal to infinity, we want to return -1, otherwise we want to return the value of x. We are applying that function to each element in the minDistances array. In other words, we are returning the minDistances array but we are replacing any value of infinity with -1.
     return list(map(lambda x: -1 if x == float('inf') else x, minDistances))
 
 
