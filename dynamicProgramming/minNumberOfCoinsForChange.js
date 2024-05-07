@@ -1,6 +1,6 @@
 // Main number of coins for change
 
-// Given an array of positive integers representing coin denominations, and a single non-negative integer n representing a target amount of money, write a function that returns the smallest number of coins needed to make change for (to some up to) that amount, using the given coin denominations.
+// Given an array of positive integers representing coin denominations, and a single non-negative integer n representing a target amount of money, write a function that returns the smallest number of coins needed to make change for (to sum up to) that amount, using the given coin denominations.
 
 // Note that you have access to an unlimited amount of coins. In other words, if the denominations are [1,5,10], you have access to an unlimited amount of 1s, 5s, and 10s.
 
@@ -33,5 +33,5 @@ function minNumberOfCoinsForChange(n, denoms) {
   return numOfCoins[n] !== Infinity ? numOfCoins[n] : -1;
 }
 
-let denominations = [3, 5];
-console.log(minNumberOfCoinsForChange(9, denominations)); // Should return 3
+let denominations = [1, 5, 10];
+console.log(minNumberOfCoinsForChange(14, denominations));
