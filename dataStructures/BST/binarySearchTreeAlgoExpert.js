@@ -1,3 +1,11 @@
+// A binary search tree is a way to store numbers in a specific order. It starts with a single number called the root. Then, we compare each new number to the root number. If the new number is smaller than the root, it goes to the left side of the root. If the new number is larger than the root, it goes to the right side of the root.
+// For the numbers on the left side, we repeat the same process. Each new number is compared to the number already on the left side. If the new number is smaller, it goes to the left of that number. If it's larger, it goes to the right of that number.
+// The same thing happens for the numbers on the right side of the root. Each new number is compared to the numbers already on the right side, and it's placed either to the left or right of those numbers based on whether it's smaller or larger.
+// This process continues until all the numbers have been added to the tree. Smaller numbers end up on the left side of the tree, and larger numbers end up on the right side.
+// To find a specific number in the tree, we start at the root. If the number we're looking for is smaller than the root, we go to the left side of the tree. If it's larger than the root, we go to the right side of the tree. We keep doing this, comparing the number to the numbers at each level of the tree, and going left or right based on whether the number is smaller or larger. Eventually, we'll either find the number we're looking for or reach the end of the tree without finding it.
+
+// *A helpful note to keep in mind is that the left side of the tree will always have smaller numbers than the root, and the right side of the tree will always have larger numbers than the root. You can think of the root as being the middle of the tree. The next largest value after the root will be the last value on the leftmost branches of the right side of the tree, and the next smallest value after the root will be the first value on the left side of the tree.
+
 // Write a BST class for a binary search tree. The class should support:
 
 // -Inserting values with the insert method
@@ -60,9 +68,7 @@ class BST {
 
   remove(value, parent = null) {
     // First, use recursion to go down the tree until we find the value
-    // check to see value is less than this.value
     if (value < this.value) {
-      // then check if this.left is not null
       if (this.left !== null) {
         // if so, then call remove on this.left, while also keeping track of the parent(this) as a second argument
         this.left.remove(value, this);
@@ -105,14 +111,63 @@ class BST {
         }
         // otherwise if it is the left child of a parent
       } else if (parent.left === this) {
-        // move the parent down the tree by changing parent.left into this.left (if not null) otherwise this.right
+        // In the example below, the call stack eventually reaches the original 12 we want to remove, which has left and right values of null, and its parent is 13. So then 13.left becomes this.right (12.right), which is null. This is how we eventually just cut off the node (12) that we want to remove.
         parent.left = this.left !== null ? this.left : this.right;
         // otherwise if it is the right child
       } else if (parent.right === this) {
-        // move parent down the tree by changing parent.right to this.left (if not null) otherwise this.right
         parent.right = this.right !== null ? this.right : this.left;
       }
     }
     return this;
   }
 }
+
+let newBST = new BST(10);
+newBST.insert(5);
+newBST.insert(15);
+newBST.insert(2);
+newBST.insert(5);
+newBST.insert(13);
+newBST.insert(22);
+newBST.insert(1);
+newBST.insert(14);
+newBST.insert(12);
+newBST.remove(10);
+console.log(newBST); // should return the following:
+// {
+//   value: 12,
+//   left: {
+//     value: 5,
+//     left: {
+//       value: 2,
+//       left: {
+//         value: 1,
+//         left: null,
+//         right: null
+//       },
+//       right: null
+//     },
+//     right: {
+//       value: 5,
+//       left: null,
+//       right: null
+//     }
+//   },
+//   right: {
+//     value: 15,
+//     left: {
+//       value: 13,
+//       left: null,
+//       right: {
+//         value: 14,
+//         left: null,
+//         right: null
+//       }
+//     },
+//     right: {
+//       value: 22,
+//       left: null,
+//       right: null
+//     }
+//   }
+// }
