@@ -13,6 +13,7 @@ def minHeightBstHelper(arr, startIndex, endIndex):
     return mainBst
 
 
+# The BST class is pre-defined in the following way:
 class BST:
     def __init__(self, value):
         self.value = value
