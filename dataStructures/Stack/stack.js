@@ -1,3 +1,8 @@
+// Stack: An array-like data structure that follows the LIFO (Last In First Out) principle. The last element added to the stack will be the first element removed from the stack.
+// A stack is an abstract data type that serves as a collection of elements, with two main principal operations: push, which adds an element to the collection, and pop, which removes the most recently added element that was not yet removed.
+// A stack is often compared to a stack of books on a table: the last book that's place on the stack of books is the first one that's taken off the stack.
+
+// utility class to create a node
 class Node {
   constructor(value) {
     this.value = value;
