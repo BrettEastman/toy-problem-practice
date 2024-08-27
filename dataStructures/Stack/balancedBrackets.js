@@ -3,11 +3,10 @@ function isBalanced(s) {
   let stack = [];
   let openCloseBrackets = { ")": "(", "}": "{", "]": "[" };
   let splitStringArr = s.split("");
-  let values = Object.values(openCloseBrackets);
-  console.log("values", values);
+  let openBrackets = Object.values(openCloseBrackets);
 
   for (let char of splitStringArr) {
-    if (values.includes(char)) {
+    if (openBrackets.includes(char)) {
       stack.push(char);
     } else if (stack[stack.length - 1] === openCloseBrackets[char]) {
       stack.pop();
@@ -22,3 +21,7 @@ function isBalanced(s) {
     return "NO";
   }
 }
+
+let string1 = "()()[{()})]";
+
+console.log(isBalanced(string1));
