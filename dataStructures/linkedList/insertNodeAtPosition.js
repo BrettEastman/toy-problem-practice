@@ -1,7 +1,8 @@
 class SinglyLinkedListNode {
-  constructor(data)
+  constructor(data) {
     this.data = data;
     this.next = null;
+  }
 }
 
 function insertNodeAtPosition(llist, data, position) {
