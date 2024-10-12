@@ -150,6 +150,7 @@ g.addEdge("Paris", "LA");
 g.addEdge("SF", "LA");
 
 console.log("g before remove", g);
+console.log("bfs:", g.breadthFirstSearch("SF"));
 
 g.removeEdge("Dallas", "Tokyo");
 g.removeEdge("Dallas", "SF");

@@ -81,7 +81,10 @@ BH.insert(55);
 BH.insert(15);
 BH.insert(44);
 BH.insert(77);
-let removal = BH.removeMax(1);
+BH.insert(3);
+BH.insert(18);
+BH.insert(222);
+// let removal = BH.removeMax(1);
 
 console.log("BH", BH);
-console.log("removal:", removal);
+// console.log("removal:", removal);
