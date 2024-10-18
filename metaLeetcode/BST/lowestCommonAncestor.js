@@ -13,30 +13,35 @@
 
 // solution I found on Leetcode Discussion, then I redid by memory
 var lowestCommonAncestor = function (p, q) {
-  function getPath(node) {
-    let path = [];
-    let currentNode = node;
+  let pDepth = getDepth(p);
+  let qDepth = getDepth(q);
 
-    while (currentNode.parent !== null) {
-      path.push(currentNode);
-      currentNode = currentNode.parent;
+  while (pDepth != qDepth) {
+    if (pDepth > qDepth) {
+      p = p.parent;
+      pDepth--;
+    } else {
+      q = q.parent;
+      qDepth--;
     }
-    path.push(currentNode);
-    return path;
   }
 
-  // create paths for each node going up each parent to the top
-  let pathP = getPath(p);
-  let pathQ = getPath(q);
+  while (p !== q) {
+    p = p.parent;
+    q = q.parent;
+  }
 
-  // filter out one of the arrays to include only elements from the other array
-  let filtered = pathP.filter((node) => pathQ.includes(node));
-
-  // return the last element of that array
-  let result = filtered[filtered.length - 1];
-  console.log("result", result);
-  return result;
+  return p;
 };
+
+function getDepth(node) {
+  let depth = 0;
+  while (node) {
+    node = node.parent;
+    depth++;
+  }
+  return depth;
+}
 
 // my first attempt which didn't work. I think the main issue was that I was trying to use a set to filter out the common elements, but I think that was not working because the nodes were not the same object in memory, so they were not being recognized as the same object. I think that is why the solution above works, because it is comparing the nodes by their values, rather than by their memory location.
 var lowestCommonAncestor = function (p, q) {
