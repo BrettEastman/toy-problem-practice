@@ -24,6 +24,43 @@ var checkSubarraySum = function (nums, k) {
   return false;
 };
 
+// my second attempt, which is based on memorizing the solution below:
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {boolean}
+ */
+var checkSubarraySum = function (nums, k) {
+  // create a Map to hold the remainders
+  let remaindersMap = new Map();
+  // create a sum var set to zero
+  let sum = 0;
+  // initialize the Map to have the first key/val pair be remainer 0: index -1
+  remaindersMap.set(0, -1);
+
+  // for loop through nums
+  for (let i = 0; i < nums.length; i++) {
+    // add the value to sum
+    sum += nums[i];
+    // get remainder by modulo'ing k from sum
+    let remainder = sum % k;
+    // if Map doesn't already have the remaider
+    if (!remaindersMap.has(remainder)) {
+      // add it as the key and the value as the index
+      remaindersMap.set(remainder, i);
+      // otherwise if it does
+    } else {
+      // then that means the sum between these two indices is divisible by k
+      // so, then check to make sure it is at least two items long
+      // if so, then return true
+      if (i - remaindersMap.get(remainder) >= 2) {
+        return true;
+      }
+    }
+  }
+  return false;
+};
+
 // Official solution:
 /**
  * Checks if the array has a continuous subarray of size at least two
