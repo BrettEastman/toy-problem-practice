@@ -17,12 +17,8 @@ var merge = function (nums1, m, nums2, n) {
 
   while (j >= 0) {
     if (i >= 0 && nums1[i] > nums2[j]) {
-      In the expression nums1[k--] = nums1[i--], the decrement operator (--) is applied twice:
-
-First, it decrements the values of k and i.
-Then, it assigns the new values of k and i to nums1[k] and nums1[i], respectively.
-      // let temp = nums1[i];
-      // nums1[k] = temp;
+      // The expression nums1[k--] = nums1[i--] is a shorthand equivalent to the following code:
+      // nums1[k] = nums1[i];
       // k--;
       // i--;
       nums1[k--] = nums1[i--];
@@ -30,7 +26,6 @@ Then, it assigns the new values of k and i to nums1[k] and nums1[i], respectivel
       nums1[k--] = nums2[j--];
     }
   }
-
   return nums1;
 };
 
