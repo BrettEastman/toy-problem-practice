@@ -25,7 +25,6 @@
  * }
  */
 
-// first discussion solution that looked interesting:
 /**
  * @param {ListNode[]} lists
  * @return {ListNode}

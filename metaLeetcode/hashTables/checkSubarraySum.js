@@ -1,28 +1,6 @@
 // Leetcode: 523. Continuous Subarray Sum
-// Description: Given an integer array nums and an integer k, return true if nums has a continuous subarray of size at least two whose elements sum up to a multiple of k, or false otherwise. An integer x is a multiple of k if there exists an integer n such that x = n * k. If k is 0, it is considered to be NOT a multiple of k.
+// Description: Given an integer array nums and an integer k, return true if nums has a continuous subarray of size at least two whose elements sum up to a multiple of k, or false otherwise. An integer x is a multiple of k if there exists an integer n such that x = n * k. 0 is always a multiple of k.
 //
-
-// my first attempt, which only passed 94/101 test cases
-/**
- * @param {number[]} nums
- * @param {number} k
- * @return {boolean}
- */
-var checkSubarraySum = function (nums, k) {
-  for (let i = 0; i < nums.length; i++) {
-    // create currentSub = [nums[i]]
-    let currentSum = nums[i];
-    // second for loop starting at i + 1
-    for (let j = i + 1; j < nums.length; j++) {
-      // add num to currentSum
-      currentSum += nums[j];
-      if (currentSum % k === 0) {
-        return true;
-      }
-    }
-  }
-  return false;
-};
 
 // my second attempt, which is based on memorizing the solution below:
 /**
@@ -99,6 +77,28 @@ var checkSubarraySum = function (nums, k) {
   }
 
   return false; // No valid subarray found.
+};
+
+// my first attempt, which only passed 94/101 test cases
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {boolean}
+ */
+var checkSubarraySum = function (nums, k) {
+  for (let i = 0; i < nums.length; i++) {
+    // create currentSub = [nums[i]]
+    let currentSum = nums[i];
+    // second for loop starting at i + 1
+    for (let j = i + 1; j < nums.length; j++) {
+      // add num to currentSum
+      currentSum += nums[j];
+      if (currentSum % k === 0) {
+        return true;
+      }
+    }
+  }
+  return false;
 };
 
 // Example usage:

@@ -27,6 +27,7 @@ var Solution = function (w) {
  */
 Solution.prototype.pickIndex = function () {
   const randomInt = Math.floor(Math.random() * this.total) + 1;
+  console.log("randomInt:", randomInt);
 
   // lowIndex and highIndex are the bounds of the search range
   let lowIndex = 0;
@@ -65,3 +66,8 @@ Solution.prototype.pickIndex = function () {
  * var obj = new Solution(w)
  * var param_1 = obj.pickIndex()
  */
+let w = [1, 2, 3, 4];
+var obj = new Solution(w);
+var param_1 = obj.pickIndex();
+
+console.log(param_1);
