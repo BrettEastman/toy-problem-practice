@@ -14,6 +14,8 @@
 // Input: nums = [1,2,3], k = 3
 // Output: 2
 
+// This approach allows us to find all valid subarrays in O(n) time, where n is the length of the array.
+
 /**
  * Counts the number of continuous subarrays that sum up to a target value k.
  * @param {number[]} nums - The input array of integers.
@@ -31,11 +33,13 @@ var subarraySum = function (nums, k) {
     sum += num; // Update the cumulative sum
 
     // Check if there is a previous cumulative sum that, when subtracted from the current sum, equals k
+    // If such a previous_sum exists in our sumMap, it means the subarray between the previous index and the current index sums to k. We add the frequency of that previous_sum to our count.
     if (sumMap.has(sum - k)) {
       count += sumMap.get(sum - k); // Increment the count by the number of times (sum - k) has occurred
     }
 
     // Update the frequency of the current cumulative sum in the map
+    // After checking for valid subarrays, we update the sumMap with the current cumulative sum. If the sum already exists, we increment its frequency; otherwise, we add it with a frequency of 1.
     sumMap.set(sum, (sumMap.get(sum) || 0) + 1);
   }
 
