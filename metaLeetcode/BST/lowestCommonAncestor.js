@@ -43,29 +43,15 @@ function getDepth(node) {
   return depth;
 }
 
-// my first attempt which didn't work. I think the main issue was that I was trying to use a set to filter out the common elements, but I think that was not working because the nodes were not the same object in memory, so they were not being recognized as the same object. I think that is why the solution above works, because it is comparing the nodes by their values, rather than by their memory location.
-var lowestCommonAncestor = function (p, q) {
-  function getPath(node) {
-    let path = [];
-    let currentNode = node;
+// #### **Time Complexity: O(h)**
 
-    while (currentNode.parent !== null) {
-      path.push(currentNode);
-      currentNode = currentNode.parent;
-    }
-    path.push(currentNode);
-    return path;
-  }
+//  Function:** Traverses from a node to the root, taking O(h) time for each node (p and q). Here, `h` represents the height of the tree or the distance from a node to the root.
+//   - **Aligning Depths:** In the worst case, one node is at the maximum depth `h`, and the other is at the root. Adjusting depths takes O(h) time.
+//   - **Finding LCA:** Traverses upwards simultaneously from both nodes until the common ancestor is found, taking at most O(h) time.
+//   - **Overall:** Each step is linear relative to the height, resulting in O(h) time complexity.
 
-  // create paths for each node going up each parent to the top
-  let pathP = getPath(p);
-  let pathQ = getPath(q);
-
-  // filter out one of the arrays to include only elements from the other array
-  let filtered = pathP.filter((node) => pathQ.includes(node));
-
-  // return the last element of that array
-  let result = filtered[filtered.length - 1];
-  console.log("result", result);
-  return result;
-};
+// #### **Space Complexity: O(1)**
+// - **Explanation:**
+//   - **Variables:** Uses a constant amount of extra space (pDepth, qDepth, and temporary pointers).
+//   - **No Additional Data Structures:** Does not utilize any data structures that grow with input size.
+//   - **Overall:** Constant space usage regardless of tree size.
