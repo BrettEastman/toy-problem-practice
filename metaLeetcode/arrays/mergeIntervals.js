@@ -35,6 +35,21 @@ var merge = function (intervals) {
   return result;
 };
 
+// Time Complexity: O(n log n)
+// Space Complexity: O(n)
+
+// Sorting the Intervals:
+// Operation: The first step in the algorithm is to sort the intervals array based on the start values of each interval.
+// Complexity: Sorting requires O(n log n) time, where n is the number of intervals. This is the dominant factor in the overall time complexity.
+
+// Merging Intervals:
+// Operation: After sorting, the algorithm iterates through the sorted intervals once to merge any overlapping intervals.
+// Complexity: This iteration runs in O(n) time since each interval is processed exactly once.
+
+// Overall Time Complexity:
+// Calculation: O(n log n) + O(n) = O(n log n)
+// Explanation: The sorting step dominates the time complexity, making the entire algorithm O(n log n).
+
 // A.I. solution:
 var merge2 = function (intervals) {
   if (!intervals.length) return [];

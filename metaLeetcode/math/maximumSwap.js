@@ -56,7 +56,7 @@ var maximumSwap = function (num) {
  * @param {number} num
  * @return {number}
  */
-var maximumSwap = function (num) {
+var maximumSwap2 = function (num) {
   let numArr = num.toString().split("");
   // create a lastIndices array to represent the 10 digits by index number, but fill with all -1's. Each item will eventually represent the index number of the digit, as it is in the numArr
   let lastIndices = new Array(10).fill(-1);
@@ -71,11 +71,12 @@ var maximumSwap = function (num) {
   for (let j = 0; j < numArr.length; j++) {
     // also a nested reverse for loop through lastIndices
     for (let k = 9; k > numArr[j]; k--) {
+      let indexOfHigherDigit = lastIndices[k];
       // if a higher digit occurs later in the number, as noted by the item at the digit's index
-      if (lastIndices[k] > j) {
+      if (indexOfHigherDigit > j) {
         // then we can swap the current digit with the last occurance of the higher digit (the item will be the index)
-        [numArr[j], numArr[lastIndices[k]]] = [
-          numArr[lastIndices[k]],
+        [numArr[j], numArr[indexOfHigherDigit]] = [
+          numArr[indexOfHigherDigit],
           numArr[j],
         ];
         return Number.parseInt(numArr.join(""));
@@ -87,4 +88,10 @@ var maximumSwap = function (num) {
 };
 
 let exampleNum = 2736;
-console.log(maximumSwap(exampleNum)); // Output: 7236
+console.log(maximumSwap2(exampleNum)); // Output: 7236
+
+// Time Complexity: O(n)
+// The function performs two linear passes through the digit array, resulting in linear time complexity.
+
+// Space Complexity: O(n)
+// The primary space usage comes from converting the number to an array of digits, which scales linearly with the input size.
