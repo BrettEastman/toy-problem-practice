@@ -13,6 +13,8 @@
 // CAVEAT!!!
 // Leetcode will not allow quickSelect to be used to solve this problem. It will only accept a solution that uses a min heap. So, the solution below will not work on Leetcode. However, it is a good solution to know and understand.
 
+// See other solution in dataStructures/heaps/findKthLargestHeap.js
+
 var findKthLargest = function (nums, k) {
   const kthIndex = nums.length - k;
 

@@ -4,15 +4,15 @@ class MinHeap {
   }
 
   // Helper methods to get parent and child indices
-  parent(index) {
+  parentIndex(index) {
     return Math.floor((index - 1) / 2);
   }
 
-  leftChild(index) {
+  leftChildIndex(index) {
     return 2 * index + 1;
   }
 
-  rightChild(index) {
+  rightChildIndex(index) {
     return 2 * index + 2;
   }
 
@@ -43,25 +43,31 @@ class MinHeap {
     let currentIndex = index;
     while (
       currentIndex > 0 &&
-      this.heap[currentIndex] < this.heap[this.parent(currentIndex)]
+      this.heap[currentIndex] < this.heap[this.parentIndex(currentIndex)]
     ) {
-      this.swap(currentIndex, this.parent(currentIndex));
-      currentIndex = this.parent(currentIndex);
+      this.swap(currentIndex, this.parentIndex(currentIndex));
+      currentIndex = this.parentIndex(currentIndex);
     }
   }
 
   // Heapify down to maintain heap property after extraction
   heapifyDown(index) {
     let smallest = index;
-    const left = this.leftChild(index);
-    const right = this.rightChild(index);
+    const leftIndex = this.leftChildIndex(index);
+    const rightIndex = this.rightChildIndex(index);
 
-    if (left < this.heap.length && this.heap[left] < this.heap[smallest]) {
-      smallest = left;
+    if (
+      leftIndex < this.heap.length &&
+      this.heap[leftIndex] < this.heap[smallest]
+    ) {
+      smallest = leftIndex;
     }
 
-    if (right < this.heap.length && this.heap[right] < this.heap[smallest]) {
-      smallest = right;
+    if (
+      rightIndex < this.heap.length &&
+      this.heap[rightIndex] < this.heap[smallest]
+    ) {
+      smallest = rightIndex;
     }
 
     if (smallest !== index) {
