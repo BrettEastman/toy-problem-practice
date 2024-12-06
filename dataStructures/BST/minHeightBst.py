@@ -5,7 +5,7 @@ def minHeightBst(array):
 def minHeightBstHelper(arr, startIndex, endIndex):
     if endIndex < startIndex:
         return None
-    # the "//" symbol is the integer division operation - same thing as Math.floor in js
+    # the "//" symbol is the integer division operation - same thing as floor in js
     midIndex = (startIndex + endIndex) // 2
     mainBst = BST(arr[midIndex])
     mainBst.left = minHeightBstHelper(arr, startIndex, midIndex - 1)
