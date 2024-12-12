@@ -7,29 +7,8 @@
 // You may imagine that nums[-1] = nums[n] = -∞. In other words, an element is always considered to be strictly greater than a neighbor that is outside the array.
 // You must write an algorithm that runs in O(log n) time.
 
-// My solution, which worked fine on Leetcode, but I don't think it's O(log n) time:
-/**
- * @param {number[]} nums
- * @return {number}
- */
-var findPeakElement = function (nums) {
-  // Go through arr once only, at each item checking to see if if it is bigger than previous and next and if so, returning it
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i - 1] === undefined && nums[i + 1] === undefined) {
-      return i;
-    } else if (nums[i - 1] === undefined && nums[i] > nums[i + 1]) {
-      return i;
-    } else if (nums[i] > nums[i - 1] && nums[i] > nums[i + 1]) {
-      return i;
-    } else if (nums[i] > nums[i - 1] && nums[i + 1] === undefined) {
-      return i;
-    } else {
-      continue;
-    }
-  }
-};
+// *The key thing to remember here is that we are looking for ANY possible peak and every array example will have at least one peak, probably multiple. In the example using nums2 = [1, 2, 3, 1, 2, 3, 4, 5, 6, 7], the peak could be 3 or 7. Using the binary search algorithm will never be able to find index 3, but it doesn't matter. The whole purpose is to find ANY peak in O(log n) time.
 
-// Apparently this is a correct O(log n) time solution that I tried based on other solutions:
 /**
  * @param {number[]} nums
  * @return {number}
