@@ -1,3 +1,29 @@
+// Leetcode: #3 Longest Substring Without Repeating Characters
+// Level: Medium
+// Given a string s, find the length of the longest substring without repeating characters.
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLongestSubstring = function (s) {
+  let characters = new Set();
+  let l = 0;
+  let result = 0;
+
+  for (let r = 0; r < s.length; r++) {
+    while (characters.has(s[r])) {
+      characters.delete(s[l]);
+      l++;
+    }
+    characters.add(s[r]);
+    result = Math.max(result, r - l + 1);
+  }
+
+  return result;
+};
+
+// COLT STEELE VERSIONS:
 // Write a function called findLongestSubstring, which accepts a string and returns the length of the longest substring with all distinct characters.
 
 // // Julie's version:
@@ -39,7 +65,7 @@ function findLongestSubstring(str) {
 }
 
 // console.log(findLongestSubstring('')); // 0
-console.log(findLongestSubstring('rithmschool')); // 7
+console.log(findLongestSubstring("rithmschool")); // 7
 // console.log(findLongestSubstring('thisisawesome')); // 6
 // console.log(findLongestSubstring('thecatinthehat')); // 7
 // console.log(findLongestSubstring('bbbbbb')); // 1
