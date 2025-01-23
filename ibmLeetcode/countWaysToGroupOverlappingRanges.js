@@ -30,6 +30,7 @@
 // - Ranges [1,3], [2,5], and [4,8] in group 1 and [10,20] in group 2.
 // - Ranges [1,3], [2,5], and [4,8] in group 2 and [10,20] in group 1.
 
+// Solution on Leetcode:
 /**
  * @param {number[][]} ranges
  * @return {number}
@@ -88,3 +89,37 @@ let exampleRanges = [
   [4, 8],
 ];
 console.log(countWays(exampleRanges)); // Output: 4
+
+// my solution based on the above solution:
+var countWays = function (ranges) {
+  // create the modulo number
+  const modulo = Math.pow(10, 9) + 7;
+  // sort the ranges
+  ranges.sort((a, b) => a[0] - b[0]);
+
+  // merge overlapping ranges
+  // create mergedRanges with first ranges item
+  let mergedRanges = [ranges[0]];
+  let i = 0;
+  for (let j = 1; j < ranges.length; j++) {
+    if (
+      mergedRanges[i][1] >= ranges[j][0] &&
+      mergedRanges[i][1] < ranges[j][1]
+    ) {
+      mergedRanges[i][1] = ranges[j][1];
+    } else if (mergedRanges[i][1] < ranges[j][0]) {
+      mergedRanges.push(ranges[j]);
+      i++;
+    } else {
+      continue;
+    }
+  }
+  // get n - the length of the new ranges arr
+  const n = mergedRanges.length;
+  let result = 1;
+  // use a for loop to get 2 to the nth power using the modulo as the limit
+  for (let k = 0; k < n; k++) {
+    result = (result * 2) % modulo;
+  }
+  return result;
+};
