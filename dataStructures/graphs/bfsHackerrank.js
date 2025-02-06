@@ -132,4 +132,4 @@ let edges = [
   [3, 4],
 ];
 let s = 1;
-console.log(bfs2(n, m, edges, s));
+console.log(bfs(n, m, edges, s));
