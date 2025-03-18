@@ -47,34 +47,39 @@ var characterReplacement = function (s, k) {
 };
 
 // Test cases
-console.log(characterReplacement("AABABBA", 1)); // 4
+// console.log(characterReplacement("AABABBA", 1)); // 4
 // console.log(characterReplacement("ABAB", 2)); // 4
 
-// my version which I thought was good, but did not pass all test cases
+// my version which is based on the above, but uses an object instead of an array, which is more readable
+// and also uses a for loop instead of a while loop
+// and according to leetcode, it beats 68% of submissions
 var characterReplacement1 = function (s, k) {
-  let maxLength = 1;
-  let currentLength = 1;
-  let left = 0;
-  let right = 1;
-  let copyK = k;
+  let l = 0;
+  let maxFreq = 0;
+  let maxLength = 0;
 
-  while (right < s.length) {
-    if (s[right] === s[left]) {
-      currentLength++;
-      maxLength = Math.max(maxLength, currentLength);
-      right++;
-    } else if (copyK > 0) {
-      copyK--;
-      currentLength++;
-      maxLength = Math.max(maxLength, currentLength);
-      right++;
-    } else {
-      maxLength = Math.max(maxLength, currentLength);
-      currentLength = 1;
-      left = right;
-      copyK = k;
-      right++;
+  // create a charCount object to keep counts of all letters
+  let charCount = {};
+
+  // for loop through string
+  for (let r = 0; r < s.length; r++) {
+    // increment the charCount object at the charIndex property
+    charCount[s[r]] === undefined ? (charCount[s[r]] = 1) : charCount[s[r]]++;
+    // make maxFreq the largest of either: the current maxFreq, or the current charCount
+    maxFreq = Math.max(charCount[s[r]], maxFreq);
+
+    // if the number of replacement chars needed is greater than k
+    // i.e. if the length of the window minus the maxFreq is greater than k
+    if (r - l + 1 - maxFreq > k) {
+      // then decrease the left charCount
+      charCount[s[l]]--;
+      // shrink the window by incrementing left (index)
+      l++;
     }
+    // make maxLength the larges of either: maxLength, or the length of the window
+    maxLength = Math.max(r - l + 1, maxLength);
   }
   return maxLength;
 };
+
+console.log(characterReplacement1("AABABBA", 1)); // 4
